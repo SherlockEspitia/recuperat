@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+  /* --- Paleta de Colores de The Ocean Cleanup --- */
+  /* Color de fondo principal (Daintree) */
+  --color-ocean-dark: #01283C;
+  /* Color de acento (Robin's Egg Blue) */
+  --color-ocean-accent: #01CBE1;
+  /* Azul secundario */
+  --color-ocean-secondary: #003755;
+  /* Variante clara del acento */
+  --color-ocean-light-accent: #01C0D4;
+  /* Blanco para texto sobre fondos oscuros */
+  --color-ocean-text: #FFFFFF;
+
+  /* Un blanco que cambie con hover*/
+  --color-ocean-light: #B8F3F4; /* #E6FAFB #7DE3E8 */
+
+  /* --- Familias Tipográficas --- */
+  /* Proxima Nova es una fuente comercial. Usamos Montserrat como sustituta gratuita y muy similar. */
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-body: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 
+  Puedes añadir aquí cualquier estilo base adicional.
+  Por ejemplo, para asegurar que el fondo oscuro se aplique por defecto:
+*/
+@layer base {
+  body {
+    background-color: var(--color-ocean-dark);
+    color: var(--color-ocean-text);
+  }
+}

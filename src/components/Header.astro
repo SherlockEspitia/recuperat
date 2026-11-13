@@ -1,0 +1,137 @@
+<header class="h-20">
+    <a class="logo" href="http://recuperatsinbarreras.com/">Recuperat Sin Barreras</a>
+
+    <nav class="h-full">
+        <div class="nav-item">
+            <a href=""><span>Proyectos</span></a>
+            <section class="nav-panel">Contenido de proyectos</section>
+        </div>
+
+        <div class="nav-item">
+            <a href=""><span>Nosotros</span></a>
+            <section class="nav-panel">Contenido sobre nosotros</section>
+        </div>
+
+        <a href="" class="nav-item"><span>Noticias</span></a>
+        <a href=""><span>Ayudanos</span></a>
+    </nav>
+
+    <a class="btn_donate px-10" href="#">Donar</a>
+</header>
+
+<style>
+    header{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background: var(--color-ocean-text);
+        min-height: clamp(8vh, 9vh, 10vh);
+    }
+    
+    .logo{
+        background: var(--color-ocean-secondary);
+        height: 100%;
+        display: flex;
+        padding: 1rem;
+        align-items: center;
+        min-width: 5vw;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    nav{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        min-width: 25vw;
+        font-size: 20px;
+        font-weight: 400;
+        word-spacing: 1px;
+        color: var(--color-ocean-dark);
+    }
+
+    nav a{
+        position: relative;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        padding: 0 0.7rem;
+        text-transform: uppercase;
+        
+    }
+
+    nav a:hover{
+        background-color: var(--color-ocean-light);
+    }
+
+    nav a span {
+        position: relative;
+    }
+
+    nav a span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-ocean-dark);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+    }
+
+    nav a:hover span::after {
+        transform: scaleX(1);
+    }
+
+    
+    .nav-item {
+        position: static;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .nav-item > a {
+        height: 100%;
+    }
+
+    .nav-item:hover > a,
+    .nav-item:focus-within > a {
+        background-color: var(--color-ocean-light);
+    }
+    
+    .nav-panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background: var(--color-ocean-light);
+        padding: 1rem;
+        width: 100%;
+        min-height: 200px;
+        height: 40vh;
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        visibility: hidden;
+    }
+
+    .nav-item:hover .nav-panel {
+        transform: scaleX(1);
+        visibility: visible;
+    }
+    
+    .btn_donate{
+        display: flex;
+        align-items: center;
+        align-self: center;
+        height: 3rem;
+        background: var(--color-ocean-dark);
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 10% 0 auto;
+    }
+
+</style>
