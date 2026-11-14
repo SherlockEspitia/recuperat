@@ -1,0 +1,77 @@
+---
+import { getImage } from 'astro:assets';
+import bgimage from '/sample-photo-3840x2160.webp'
+
+const optimizedBGImage = await getImage({
+    src: '/sample-photo-3840x2160.webp',
+    format:'webp',
+    width: 3840,
+    height:2160
+})
+---
+
+
+<section
+  class="hero"
+  style={`background-image: url("${optimizedBGImage.src}")`}
+>
+    <div class="hero_content">
+        <h1 class="text-7xl">Recuperat todo lo bueno para conservar el bienestar</h1>
+        <a class="donate_link" href="">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="48" fill="#a7c9cb"/>
+                <path d="M28 50 H70 M54 34 L70 50 L54 66" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Donar
+        </a>
+    </div>
+</section>
+
+<style>
+    .hero{
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 88vh;
+    }
+
+    .hero_content{
+        max-height:90vh;
+        margin: 0 auto;
+        position: relative;
+        padding: 40vh 15vw 0;
+    }
+    h1{
+        font-weight: 400;
+        width: 18ch;
+        margin-bottom: 2rem;
+    }
+    .donate_link{
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 18px;
+        
+    }
+
+    .donate_link:hover{        
+        text-decoration: underline;
+    }
+    .donate_link svg{
+        width: 2rem;
+        height: 2rem;
+    }
+    .donate_link svg path{
+        transition: transform 180ms ease;
+    }
+    .donate_link:hover svg path,
+    .donate_link:focus-visible svg path{
+        transform: translateX(0.35rem);
+    }
+    @media (prefers-reduced-motion: reduce){
+        .donate_link svg path{
+            transition: none;
+        }
+    }
+
+</style>
