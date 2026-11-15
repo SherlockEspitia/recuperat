@@ -15,9 +15,13 @@
   --color-ocean-light-accent: #01C0D4;
   /* Blanco para texto sobre fondos oscuros */
   --color-ocean-text: #FFFFFF;
-
   /* Un blanco que cambie con hover*/
   --color-ocean-light: #B8F3F4; /* #E6FAFB #7DE3E8 */
+  /* Blanco para fondos*/
+  --color-ocean-bg-white: #f2f5f6;
+  /* Azul para textos sobre fondos blancos*/
+  --color-ocean-text-blue: #01cbe1;
+
 
   /* --- Familias Tipográficas --- */
   /* Proxima Nova es una fuente comercial. Usamos Montserrat como sustituta gratuita y muy similar. */
