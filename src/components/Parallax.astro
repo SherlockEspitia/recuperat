@@ -8,8 +8,14 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorum blanditiis voluptatibus adipisci temporibus provident in iure consectetur ut! Error natus perspiciatis est voluptatem sint maxime nostrum et, ea dolorum.
         </p>
     </div>
-    <div class="scroller-media">
-        <video src="/src/assets/reciclaje-1-ciclo.webm" autoplay loop="true" playsinline="true"></video>
+    <div class="scroller-text">
+        <hr>
+        <h2>
+            Hola Mundo
+        </h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorum blanditiis voluptatibus adipisci temporibus provident in iure consectetur ut! Error natus perspiciatis est voluptatem sint maxime nostrum et, ea dolorum.
+        </p>
     </div>
     <div class="scroller-text">
         <hr>
@@ -20,57 +26,102 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorum blanditiis voluptatibus adipisci temporibus provident in iure consectetur ut! Error natus perspiciatis est voluptatem sint maxime nostrum et, ea dolorum.
         </p>
     </div>
-    <div class="scroller-media">
-        <video src="/src/assets/reciclaje-2-frasco-maceta.webm" autoplay loop="true" playsinline="true"></video>
-    </div>
-    <div class="scroller-text">
-        <hr>
-        <h2>
-            Hola Mundo
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorum blanditiis voluptatibus adipisci temporibus provident in iure consectetur ut! Error natus perspiciatis est voluptatem sint maxime nostrum et, ea dolorum.
-        </p>
-    </div>
-    <div class="scroller-media">
-        <video src="/src/assets/reciclaje-3-separa.webm" autoplay loop="true" playsinline="true"></video>
+    <div class="scroller-media" aria-hidden="true">
+        <video class="is-active" src="/src/assets/reciclaje-1-ciclo.webm" autoplay muted loop playsinline></video>
+        <video src="/src/assets/reciclaje-2-frasco-maceta.webm" autoplay muted loop playsinline></video>
+        <video src="/src/assets/reciclaje-3-separa.webm" autoplay muted loop playsinline></video>
     </div>
 </article>
 
+<script>
+    const scroller = document.querySelector(".scroller");
+
+    if (scroller) {
+        const textBlocks = Array.from(scroller.querySelectorAll(".scroller-text"));
+        const videos = Array.from(scroller.querySelectorAll(".scroller-media video"));
+        let scrollFrame = 0;
+
+        const updateActiveVideo = () => {
+            scrollFrame = 0;
+            const activeIndex = textBlocks.reduce((currentIndex, text, index) => {
+                return text.getBoundingClientRect().top <= 0 ? index : currentIndex;
+            }, 0);
+
+            videos.forEach((video, index) => {
+                video.classList.toggle("is-active", index === activeIndex);
+            });
+        };
+
+        const requestVideoUpdate = () => {
+            if (!scrollFrame) {
+                scrollFrame = requestAnimationFrame(updateActiveVideo);
+            }
+        };
+
+        window.addEventListener("scroll", requestVideoUpdate, { passive: true });
+        window.addEventListener("resize", requestVideoUpdate);
+        updateActiveVideo();
+    }
+</script>
+
 <style>
-    .scroller{
+    .scroller {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);/*2vh 1fr calc(40vh-100px) 7rem calc(40vh-100px) 1fr 7rem;*/
-        grid-gap: 10vh;
-        grid-auto-rows: minmax(600px, auto);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(100vh, auto));
+        gap: 10vh;
         padding-inline: 8vw;
-        height: 100vh;
-    }
-    .scroller-text{
-        grid-column: 1 / 2 ;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .scroller-media{
-        grid-column: 2 / 2;        
     }
 
-    .scroller-media, .scroller-text{
+    .scroller-text {
+        grid-column: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    hr{
+
+    .scroller-media {
+        grid-column: 2;
+        grid-row: 1 / 4;
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .scroller-media video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transform: scale(1.03);
+        transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .scroller-media video.is-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .scroller hr {
         color: var(--color-ocean-accent);
     }
-    h2{
+
+    .scroller h2 {
         width: 100%;
         color: var(--color-ocean-text-blue);
         font-size: 3.5rem;
         font-weight: 600;
         text-align: left;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .scroller-media video {
+            transition: none;
+        }
     }
 </style>
